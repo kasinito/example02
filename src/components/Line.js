@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
-const Line = ({ content, fixLine }) => {
+const Line = ({ content, fixLine, fixNow, setFixNow }) => {
   const [Text, fixText] = useState("");
   const c_done = () => {
     content.isDone = !content.isDone;
   };
-  const [fixNow, setFixNow] = useState(false);
 
-  return fixNow === true ? (
+  return fixNow === content.id ? (
     <form
       onSubmit={() => fixLine({ id: content.id, text: Text, isDone: false })}
     >
@@ -18,7 +17,7 @@ const Line = ({ content, fixLine }) => {
     <>
       <li>
         {content.text}
-        <button onClick={() => setFixNow(true)}>config</button>
+        <button onClick={() => setFixNow(content.id)}>config</button>
         <input type="checkbox" value={content.isDone} onClick={c_done} />
       </li>
     </>

@@ -6,6 +6,8 @@ const Main = () => {
   const [content, setContent] = useState([]);
   const [text, setText] = useState("");
   const [reload, setReload] = useState(false);
+  const [fixNow, setFixNow] = useState("");
+
   const check = () => {
     console.log(content);
   };
@@ -47,7 +49,15 @@ const Main = () => {
       </form>
       <button onClick={check}>check</button>
       {content.map((line) => {
-        return <Line key={line.id} content={line} fixLine={fixLine} />;
+        return (
+          <Line
+            key={line.id}
+            content={line}
+            fixLine={fixLine}
+            fixNow={fixNow}
+            setFixNow={setFixNow}
+          />
+        );
       })}
       <button onClick={deleteLine}>delete</button>
     </>
